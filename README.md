@@ -14,8 +14,11 @@
   <a href="https://opensource.org/licenses/MIT">
     <img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="License MIT">
   </a>
-  <a href="https://travis-ci.com/leonardomso/33-js-concepts">
-    <img src="https://img.shields.io/travis/leonardomso/33-js-concepts/master.svg?style=flat-square&label=build&logo=travis" alt="Build Status">
+  <a href="https://github.com/juninmd/33-js-concepts/actions">
+    <img src="https://img.shields.io/github/actions/workflow/status/juninmd/33-js-concepts/ci.yml?branch=main&style=flat-square&label=build&logo=github" alt="Build Status">
+  </a>
+  <a href="https://github.com/juninmd/33-js-concepts/actions">
+    <img src="https://img.shields.io/github/actions/workflow/status/juninmd/33-js-concepts/ci.yml?branch=main&style=flat-square&label=test&logo=jest" alt="Test Status">
   </a>
 </p>
 
