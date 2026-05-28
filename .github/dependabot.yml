@@ -1,0 +1,12 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: "*"
+        # Ignore patch versions for now, you can adjust as needed
+        versions: ["*"]
+    # You can also specify labels, reviewers, etc.
