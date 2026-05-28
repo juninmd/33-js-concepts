@@ -1,16 +1,16 @@
-const fs = require('fs');
-const path = require('path');
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 
-const README_PATH = path.join(__dirname, '..', 'README.md');
+const README_PATH = join(__dirname, '..', 'README.md');
 const URL_REGEX = /https?:\/\/[^\s<>)\]"]+/g;
 
-function extractLinks(filePath) {
-  const content = fs.readFileSync(filePath, 'utf8');
+function extractLinks(filePath: string): string[] {
+  const content = readFileSync(filePath, 'utf8');
   const urls = content.match(URL_REGEX) || [];
   return [...new Set(urls)];
 }
 
-function validateUrl(url) {
+function validateUrl(url: string): boolean {
   try {
     new URL(url);
     return true;
@@ -19,9 +19,9 @@ function validateUrl(url) {
   }
 }
 
-function validateLinks() {
+function validateLinks(): void {
   const links = extractLinks(README_PATH);
-  const invalidLinks = [];
+  const invalidLinks: string[] = [];
 
   console.log(`Found ${links.length} unique links in README.md\n`);
 

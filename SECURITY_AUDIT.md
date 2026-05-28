@@ -13,11 +13,12 @@ This security audit was performed on the `juninmd/33-js-concepts` repository to 
 ### Critical Issues
 
 #### 1. Exposed GitHub Personal Access Token
+
 - **Location:** Git remote URL
 - **Severity:** CRITICAL
 - **Description:** A GitHub Personal Access Token (PAT) was found embedded in the git remote URL
 - **Token Pattern:** `ghp_***` (truncated for security)
-- **Recommendation:** 
+- **Recommendation:**
   - Immediately revoke the exposed token
   - Use SSH keys or GitHub CLI authentication instead
   - Remove the token from git configuration
@@ -25,18 +26,21 @@ This security audit was performed on the `juninmd/33-js-concepts` repository to 
 ### High Priority Issues
 
 #### 2. Missing Security Policy
+
 - **Location:** Repository root
 - **Severity:** HIGH
 - **Description:** No SECURITY.md file existed for responsible disclosure
 - **Status:** FIXED - Added comprehensive SECURITY.md
 
 #### 3. No Automated Dependency Updates
+
 - **Location:** Repository configuration
 - **Severity:** HIGH
 - **Description:** No Dependabot or Renovate configuration for automated updates
 - **Status:** FIXED - Added Dependabot configuration
 
 #### 4. Limited CI/CD Security Scanning
+
 - **Location:** `.travis.yml`
 - **Severity:** HIGH
 - **Description:** Travis CI only performed link checking, no security scanning
@@ -45,12 +49,14 @@ This security audit was performed on the `juninmd/33-js-concepts` repository to 
 ### Medium Priority Issues
 
 #### 5. Incomplete .gitignore for Secrets
+
 - **Location:** `.gitignore`
 - **Severity:** MEDIUM
 - **Description:** Basic .gitignore lacked comprehensive secret patterns
 - **Status:** FIXED - Added comprehensive secret patterns
 
 #### 6. No Security Scanning in CI/CD
+
 - **Location:** CI/CD pipeline
 - **Severity:** MEDIUM
 - **Description:** No automated security scanning for secrets, vulnerabilities, or code issues
@@ -59,6 +65,7 @@ This security audit was performed on the `juninmd/33-js-concepts` repository to 
 ### Low Priority Issues
 
 #### 7. No License Compatibility Check
+
 - **Location:** CI/CD pipeline
 - **Severity:** LOW
 - **Description:** No automated license compliance checking
@@ -69,6 +76,7 @@ This security audit was performed on the `juninmd/33-js-concepts` repository to 
 ### 1. Secrets Management
 
 **Updated `.gitignore` with:**
+
 - Environment files (`.env`, `.env.local`, `.env.*.local`)
 - Certificate and key files (`*.key`, `*.pem`, `*.p12`, `*.cert`)
 - Secrets directories (`secrets/`, `config/secrets.yml`)
@@ -78,6 +86,7 @@ This security audit was performed on the `juninmd/33-js-concepts` repository to 
 ### 2. Automated Dependency Updates
 
 **Created `dependabot.yml`:**
+
 - Weekly dependency updates (Mondays at 09:00 BRT)
 - Separate handling for development and production dependencies
 - GitHub Actions dependency updates
@@ -87,6 +96,7 @@ This security audit was performed on the `juninmd/33-js-concepts` repository to 
 ### 3. CI/CD Security Scanning
 
 **Created `security.yml` GitHub Actions workflow:**
+
 - **Secret Scanning:** TruffleHog for detecting committed secrets
 - **CodeQL Analysis:** Static analysis for code vulnerabilities
 - **Dependency Review:** Automated review of dependency changes
@@ -97,6 +107,7 @@ This security audit was performed on the `juninmd/33-js-concepts` repository to 
 ### 4. Security Policy
 
 **Created `SECURITY.md`:**
+
 - Vulnerability reporting procedures
 - Response timeline commitments
 - Security measures documentation
@@ -105,37 +116,41 @@ This security audit was performed on the `juninmd/33-js-concepts` repository to 
 
 ## OWASP Top 10 Compliance
 
-| Category | Status | Notes |
-|----------|--------|-------|
-| 1. Broken Access Control | N/A | Educational repository, no user access |
-| 2. Cryptographic Failures | N/A | No cryptographic operations |
-| 3. Injection | N/A | No user input processing |
-| 4. Insecure Design | LOW | Repository structure is appropriate |
-| 5. Security Misconfiguration | FIXED | Added security scanning and policies |
-| 6. Vulnerable and Outdated Components | FIXED | Added Dependabot for automated updates |
-| 7. Identification and Authentication Failures | N/A | No authentication system |
-| 8. Software and Data Integrity Failures | LOW | Added integrity checks |
-| 9. Security Logging and Monitoring Failures | FIXED | Added security scanning workflows |
-| 10. Server-Side Request Forgery (SSRF) | N/A | No server-side operations |
+| Category                                      | Status | Notes                                  |
+| --------------------------------------------- | ------ | -------------------------------------- |
+| 1. Broken Access Control                      | N/A    | Educational repository, no user access |
+| 2. Cryptographic Failures                     | N/A    | No cryptographic operations            |
+| 3. Injection                                  | N/A    | No user input processing               |
+| 4. Insecure Design                            | LOW    | Repository structure is appropriate    |
+| 5. Security Misconfiguration                  | FIXED  | Added security scanning and policies   |
+| 6. Vulnerable and Outdated Components         | FIXED  | Added Dependabot for automated updates |
+| 7. Identification and Authentication Failures | N/A    | No authentication system               |
+| 8. Software and Data Integrity Failures       | LOW    | Added integrity checks                 |
+| 9. Security Logging and Monitoring Failures   | FIXED  | Added security scanning workflows      |
+| 10. Server-Side Request Forgery (SSRF)        | N/A    | No server-side operations              |
 
 ## Security Tools Added
 
 ### 1. TruffleHog
+
 - **Purpose:** Detect committed secrets and credentials
 - **Scope:** All file types, verified results only
 - **Integration:** GitHub Actions workflow
 
 ### 2. CodeQL
+
 - **Purpose:** Static analysis for code vulnerabilities
 - **Scope:** JavaScript files
 - **Integration:** GitHub Actions workflow
 
 ### 3. Dependabot
+
 - **Purpose:** Automated dependency updates
 - **Scope:** npm packages, GitHub Actions
 - **Integration:** GitHub native Dependabot
 
 ### 4. NPM Audit
+
 - **Purpose:** Identify known vulnerabilities in dependencies
 - **Scope:** npm dependencies
 - **Integration:** GitHub Actions workflow
@@ -143,10 +158,12 @@ This security audit was performed on the `juninmd/33-js-concepts` repository to 
 ## Files Created/Modified
 
 ### Modified Files
+
 1. `.gitignore` - Added comprehensive secret patterns
 2. `.github/dependabot.yml` - Created Dependabot configuration
 
 ### New Files
+
 1. `.github/workflows/security.yml` - Security scanning workflow
 2. `SECURITY.md` - Security policy documentation
 3. `SECURITY_AUDIT.md` - This audit report
@@ -173,4 +190,4 @@ The security hardening measures implemented significantly improve the security p
 
 ---
 
-*This audit was performed on May 28, 2026. Security is an ongoing process, and regular reviews are recommended.*
+_This audit was performed on May 28, 2026. Security is an ongoing process, and regular reviews are recommended._
