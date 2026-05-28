@@ -6,7 +6,7 @@ If you discover a security vulnerability in this project, please report it respo
 
 ### How to Report
 
-1. **Email:** Send an email to [juninmd] with details about the vulnerability
+1. **Email:** Send an email to security@example.com with details about the vulnerability
 2. **Subject Line:** Use "Security Vulnerability Report - 33-js-concepts"
 3. **Include:**
    - Description of the vulnerability
