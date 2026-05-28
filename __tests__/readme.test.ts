@@ -1,14 +1,11 @@
-const fs = require('fs');
-const path = require('path');
+import { readFileSync, existsSync } from 'node:fs';
+import { join } from 'node:path';
 
 describe('README Validation', () => {
-  let readmeContent;
+  let readmeContent: string;
 
   beforeAll(() => {
-    readmeContent = fs.readFileSync(
-      path.join(__dirname, '..', 'README.md'),
-      'utf8'
-    );
+    readmeContent = readFileSync(join(__dirname, '..', 'README.md'), 'utf8');
   });
 
   test('README exists and is not empty', () => {
@@ -25,8 +22,7 @@ describe('README Validation', () => {
   });
 
   test('README has at least 10 concept sections', () => {
-    const sectionMatches = readmeContent.match(/^## \d+\./gm);
-    expect(sectionMatches).toBeTruthy();
+    const sectionMatches = readmeContent.match(/^## \\d+\\./gm) || [];
     expect(sectionMatches.length).toBeGreaterThanOrEqual(10);
   });
 
@@ -40,39 +36,47 @@ describe('README Validation', () => {
 });
 
 describe('Project Structure', () => {
+  const projectRoot = join(__dirname, '..');
+
   test('package.json exists', () => {
-    const packagePath = path.join(__dirname, '..', 'package.json');
-    expect(fs.existsSync(packagePath)).toBe(true);
+    const packagePath = join(projectRoot, 'package.json');
+    expect(existsSync(packagePath)).toBe(true);
   });
 
   test('package.json has valid JSON', () => {
-    const packagePath = path.join(__dirname, '..', 'package.json');
-    const content = fs.readFileSync(packagePath, 'utf8');
+    const packagePath = join(projectRoot, 'package.json');
+    const content = readFileSync(packagePath, 'utf8');
     expect(() => JSON.parse(content)).not.toThrow();
   });
 
   test('LICENSE file exists', () => {
-    const licensePath = path.join(__dirname, '..', 'LICENSE');
-    expect(fs.existsSync(licensePath)).toBe(true);
+    const licensePath = join(projectRoot, 'LICENSE');
+    expect(existsSync(licensePath)).toBe(true);
   });
 
   test('.gitignore exists', () => {
-    const gitignorePath = path.join(__dirname, '..', '.gitignore');
-    expect(fs.existsSync(gitignorePath)).toBe(true);
+    const gitignorePath = join(projectRoot, '.gitignore');
+    expect(existsSync(gitignorePath)).toBe(true);
   });
 
-  test('index.js exists', () => {
-    const indexPath = path.join(__dirname, '..', 'index.js');
-    expect(fs.existsSync(indexPath)).toBe(true);
+  test('index.ts exists', () => {
+    const indexPath = join(projectRoot, 'index.ts');
+    expect(existsSync(indexPath)).toBe(true);
   });
 });
 
 describe('Package.json Validation', () => {
-  let packageJson;
+  let packageJson: {
+    name: string;
+    version: string;
+    description: string;
+    license: string;
+    scripts: Record<string, string>;
+  };
 
   beforeAll(() => {
-    const packagePath = path.join(__dirname, '..', 'package.json');
-    packageJson = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
+    const packagePath = join(__dirname, '..', 'package.json');
+    packageJson = JSON.parse(readFileSync(packagePath, 'utf8'));
   });
 
   test('has required fields', () => {

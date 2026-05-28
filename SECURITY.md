@@ -47,6 +47,7 @@ This repository implements automated security scanning through GitHub Actions:
 ## Scope
 
 This security policy applies to:
+
 - The main branch of this repository
 - All published releases
 - Documentation and configuration files
@@ -69,6 +70,7 @@ This project aims to follow OWASP Top 10 guidelines and maintain security best p
 ## Contact
 
 For security-related inquiries, please contact:
+
 - **Maintainer:** juninmd
 - **GitHub:** [@juninmd](https://github.com/juninmd)
 

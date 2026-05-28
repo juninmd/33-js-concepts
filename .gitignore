@@ -107,6 +107,9 @@ firebase-service-account.json
 # Docker secrets
 docker-compose.override.yml
 
+# TypeScript build output
+dist/
+
 # IDE and editor files
 .idea/
 .vscode/
