@@ -19,7 +19,7 @@ function validateUrl(url) {
   }
 }
 
-async function validateLinks() {
+function validateLinks() {
   const links = extractLinks(README_PATH);
   const invalidLinks = [];
 
