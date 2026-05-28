@@ -22,9 +22,8 @@ describe('README Validation', () => {
   });
 
   test('README has at least 10 concept sections', () => {
-    const sectionMatches = readmeContent.match(/^## \d+\./gm);
-    expect(sectionMatches).toBeTruthy();
-    expect(sectionMatches!.length).toBeGreaterThanOrEqual(10);
+    const sectionMatches = readmeContent.match(/^## \\d+\\./gm) || [];
+    expect(sectionMatches.length).toBeGreaterThanOrEqual(10);
   });
 
   test('README has license badge', () => {
